@@ -1,0 +1,432 @@
+body{
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    background-color:#FEF8E9;
+    margin: 0;
+    }
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-bottom: 0.5px dashed;
+    border-bottom-color: #B2A684;
+    background-color: #DEEEEF;
+}
+.first_header_block{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+#empty{
+    width: 89.85px;
+}
+.logout_block{
+    display: flex;
+    justify-content: center;
+}
+.headername_block{
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo{
+    width: 128.25px;
+    height: 91.5px;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.headername{
+    display: block;
+    justify-content: space-between;
+    margin: 0;
+    background-color:  rgba(0, 0, 0, 0);
+    color: #FEC63D;
+    font-size: 3.2em;
+    font-family: 'Arizonia', cursive;
+}
+
+.logout_button{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer; 
+}
+#logout_icon:hover{
+    color: #FEC63D;
+}
+.logout_button:active{
+    color: #FEC63D;
+}
+.username{
+    right: 45px;
+    color: #5B1A04;
+    font-family: 'Advent Pro', cursive;
+}
+
+
+main{
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search{
+    width: auto;
+    margin: 16px;
+    border-radius: 16px;
+    border-color: #5B1A04;
+    border-width: 0.8px;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+    background-color: #F9F8F7;
+}
+::-webkit-input-placeholder { 
+     color: #5B1A04;
+  }
+  @media(max-width: 600px){
+    .search{
+        width: 100px;
+        margin: 16px 5px 5px 16px;
+        font-size: 0.6em;
+    }
+}
+
+  @media(max-width: 450px){
+    .search{
+        width: 85px;
+        margin: 15px 5px 5px 15px;
+        font-size: 0.6em;
+    }
+}
+  @media(max-width: 340px){
+    .search{
+        width: 80px;
+        margin: 16px 5px 5px 16px;
+        font-size: 0.6em;
+    }
+}
+
+.add_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.5em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+    cursor: pointer;
+}
+.add_button:hover{
+    color: #FEC63D;
+}
+.add_button:active{
+    color: #FEC63D;
+}
+
+.photopost{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 500px;
+    height: 350px;
+    border: #5B1A04;
+    border: dashed;
+    border-radius: 45px;
+    margin: 45px;
+    background-color: #F9F8F7;
+}
+
+.name{
+    width: 80%;
+    margin: 0 0 5px 0px;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+}
+.image{
+    flex: 1 0 auto;
+    height: 70%;
+    width: 99%; 
+    border-radius: 30px;
+}
+.toolbar{
+    width: 100%;
+    margin: 0 15px 5px 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.ph_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 0 auto;
+}
+.description{
+    height: 35%;
+    margin: 5px 0 0 0;
+    flex: 1 0 auto;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1em;
+    color: #7B5A19;  
+}
+.hashtags{
+    font-family: 'Advent Pro', cursive;
+    font-size: 0.8em;
+    color: #7B5A19;  
+}
+.ph_date{
+    font-family: 'Advent Pro', cursive;
+    font-size: 0.7em;
+    color: #7B5A19;  
+}
+.tool_button{
+    margin: 5px;
+    border: none;
+    width: 40px;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer; 
+}
+.edit{
+    display: flex;
+}
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.yellow1{
+    color: #FEC63D;
+}
+.material-icons.red1{
+    color: #5B1A04;
+}
+.material-icons.md-36.yellow1:hover{
+    color: #8cc3c9;
+}
+.material-icons.md-36.yellow1:active{
+    color: #8cc3c9;
+}
+.show_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.4em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+    cursor: pointer;
+
+}
+.show_button:hover{
+    color: #FEC63D;
+}
+.show_button:active{
+    color: #FEC63D;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: #EFEBE2;
+    bottom: 0;
+    width: 100%;
+    height: 128px;
+}
+.footer_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.footername{
+    margin: 0;
+    background-color:  rgba(0, 0, 0, 0);
+    color: #C19D46;
+    font-size: 3em;
+    font-family: 'Arizonia', cursive;
+}
+.info{
+    font-family: 'Advent Pro', cursive;
+    color: rgb(141, 117, 69);
+    margin: 0;
+}
+.contact{
+    font-family: 'Advent Pro', cursive;
+    color: rgb(141, 117, 69);
+    margin: 0;
+}
+.date{
+    font-family: 'Advent Pro', cursive;
+    color: rgb(141, 117, 69);
+    margin: 0;
+}
+@media(max-width: 600px){
+    .photopost{
+        width: 315px;
+        height: 220.5px;
+        margin: 35px;
+    }
+    .material-icons.md-36 { font-size: 20px; }
+    .tool_button{
+        margin: 0;
+    }
+    .description{
+        font-size: 0.8em;
+    }
+    .hashtags{
+        font-size: 0.6em;
+    }
+    .date{
+        font-size: 0.4em;
+    }
+
+}
+@media(max-width: 500px){
+    .headername{
+        display: none;
+    }
+    #logo{
+        width: 102.6px;
+        height: 73.2px;
+    }
+    header{
+        width: 100%;
+        height: 90px;
+    }
+ .photopost{
+        width: 315px;
+        height: 220.5px;
+        margin: 35px 0 35px 0;
+    }
+}
+.log_in{
+    background-color: #FBF8E5;
+    display: none !important;
+}
+.login_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 70px;
+}
+#login_img{
+    margin: 0 50px;
+}
+.message{
+    width: 220px;
+    height: 80px;
+    margin: 100px 0 0 0;
+    padding: 40px;
+    background-color: #FDF9ED;
+    border: dashed;
+    border-color: #5B1A04;
+    border-radius: 90px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.2em;
+    color: #9B7260;
+    text-align: center;
+}
+.input_field{
+    margin: 50px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.personal_data{
+    width:auto;
+    margin: 16px;
+    border-radius: 16px;
+    border-color: #C19D46;
+    border-width: 0.8px;
+    font-family: 'Advent Pro', cursive;
+    background-color: #F9F8F7;
+
+}
+#done_icon{
+    margin: 0 200px;
+}
+.error{
+    width: 100%;
+    height: 100%;
+    background-color: #D8D2B0;
+    display: none !important;
+}
+#error_img{
+    margin: 40px 0 0 70px;
+    border-radius: 150px;
+}
+.error_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 200px;
+}
+.return_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 2em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+}
+#return_icon{
+    margin: 10px 0;
+}
+.return_button:hover{
+    color: #F9F8F7;
+}
+.return_button:active{
+    color: #F9F8F7;
+}
+.add{
+    display: flex;
+
+}
+.photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 500px;
+    height: 350px;
+    margin: 100px 0 0 100px;
+    border: #5B1A04;
+    border: dashed;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+}
+#add_date{
+    margin: 5px 0 0 40px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.5em;
+    color: #7B5A19;  
+}
+#add_name{
+    margin: 5px 0 0 40px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.5em;
+    color: #7B5A19;  
+}
+.description_block{
+    display: flex;
+    flex-direction: column;
+    margin: 100px 0 0 50px;
+}
+.add_input{
+    margin: 5px 0 5px 50px;
+    width: 250px;
+    height: 150px;
+    border: #C19D47;
+    border: dashed;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+}
