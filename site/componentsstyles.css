@@ -1,0 +1,145 @@
+
+
+.log_in{
+    background-color: #FBF8E5;
+    display: flex;
+}
+.login_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 70px;
+}
+#login_img{
+    margin: 0 50px;
+}
+.message{
+    width: 220px;
+    height: 80px;
+    margin: 100px 0 0 0;
+    padding: 40px;
+    background-color: #FDF9ED;
+    border: dashed;
+    border-color: #5B1A04;
+    border-radius: 90px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.2em;
+    color: #9B7260;
+    text-align: center;
+}
+.input_field{
+    margin: 50px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.personal_data{
+    width:auto;
+    margin: 16px;
+    border-radius: 16px;
+    border-color: #C19D46;
+    border-width: 0.8px;
+    font-family: 'Advent Pro', cursive;
+    background-color: #F9F8F7;
+
+}
+#done_icon{
+    margin: 0 200px;
+}
+.error{
+    width: 100%;
+    height: 100%;
+    background-color: #D8D2B0;
+    display: flex;
+}
+#error_img{
+    margin: 40px 0 0 70px;
+    border-radius: 150px;
+}
+.error_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 200px;
+}
+.return_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 2em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+}
+#return_icon{
+    margin: 10px 0;
+}
+.return_button:hover{
+    color: #F9F8F7;
+}
+.return_button:active{
+    color: #F9F8F7;
+}
+
+
+.add{
+    display: flex;
+
+}
+.photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 500px;
+    height: 350px;
+    margin: 100px 0 0 100px;
+    border: #5B1A04;
+    border: dashed;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+}
+#add_date{
+    margin: 5px 0 0 40px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.5em;
+    color: #7B5A19;  
+}
+#add_name{
+    margin: 5px 0 0 40px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.5em;
+    color: #7B5A19;  
+}
+.description_block{
+    display: flex;
+    flex-direction: column;
+    margin: 100px 0 0 50px;
+}
+.add_input{
+    margin: 5px 0 5px 50px;
+    width: 250px;
+    height: 150px;
+    border: #C19D47;
+    border: dashed;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+}
+.upload_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1.5em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+    cursor: pointer;
+}
+.add_button:hover{
+    color: #FEC63D;
+}
+.add_button:active{
+    color: #FEC63D;
+}

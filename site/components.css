@@ -1,0 +1,273 @@
+.log_in{
+    background-color: #FBF8E5;
+    display: flex;
+}
+.login_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5%;
+}
+#login_img{
+    width: 70%;
+    height: 70%;
+}
+.message{
+    margin: 50% 0 0 0;
+    padding: 10%;
+    background-color: #FDF9ED;
+    border: dashed;
+    border-color: #5B1A04;
+    border-radius: 90px;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.2em;
+    color: #9B7260;
+    text-align: center;
+}
+.input_field{
+    margin: 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.personal_data{
+    width:auto;
+    margin: 5%;
+    border-radius: 16px;
+    border-color: #C19D46;
+    border-width: 0.8px;
+    font-family: 'Advent Pro', cursive;
+    background-color: #F9F8F7;
+
+}
+
+.signup{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+@media(max-width: 600px){
+    #login_img{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .login_block{
+        position: absolute;
+        margin: 0;
+    }
+    .message{
+        display: none;
+    }
+    .log_in{
+        justify-content: center;
+        align-items: center;
+    }
+    .input_field{
+        width: 120%;
+    }
+}
+
+
+.error{
+    width: 100%;
+    height: 100%;
+    background-color: #D8D2B0;
+    display: flex;
+}
+#error_img{
+    margin: 40px 0 0 70px;
+    border-radius: 150px;
+}
+.error_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 200px;
+}
+.return_button{
+    display: flex;
+    margin: 24px;
+    margin-bottom: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 2em;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+}
+#return_icon{
+    margin: 10px 0;
+}
+.return_button:hover{
+    color: #F9F8F7;
+}
+.return_button:active{
+    color: #F9F8F7;
+}
+
+
+.title{
+    background-color: #FDF9ED;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.2em;
+    color: #9B7260;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+
+}
+.add{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+.photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 450px;
+    height: 280px;
+    margin: 5%;
+    margin-right: 0;
+    border: 2px dashed #5B1A04;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+}
+.add_image{
+    border-radius: 50px;
+    width: 98%;
+    height: 230px;
+    margin: 5px;
+}
+#img{
+    position: relative;
+	opacity: 0;
+    z-index: 2;
+    width: 200px;
+    height: 0px;
+}
+div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+    display: flex;
+    justify-content: flex-start;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+    z-index: 1;
+    margin: 8px;
+}
+
+.fakeinput,#url{
+    margin: 10px;
+    padding: 2px;
+    border: 0.5px solid #5B1A04;
+    border-radius: 10px;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+}
+.fakeinput{
+    margin: 0;
+}
+#add_date{
+    font-family: 'Advent Pro', cursive;
+    font-size: 1em;
+    color: #7B5A19;  
+    margin: 10px;
+}
+#add_name{
+    font-family: 'Advent Pro', cursive;
+    font-size: 1em;
+    color: #7B5A19; 
+    margin: 10px; 
+}
+.img_load{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.description_block{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+}
+.add_input{
+    margin: 2% 0 2% 10%;
+    padding: 10px;;
+    width: 200px;
+    height: 30%;
+    border: 1.5px solid #5B1A04;
+    border-radius: 45px;
+    background-color: #F9F8F7;
+    align-self: flex-start;
+    font-family: 'Advent Pro', cursive;
+    color: #5B1A04;
+    resize: none; 
+}
+.save_button,.reset_button{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: #5B1A04;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.save_button:hover,.reset_button:hover{
+    color: #FEC63D;
+}
+.save_button:active,.reset_button:active{
+    color: #FEC63D;
+}
+ @media(max-width: 700px){
+     .add{
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+     }
+     .photo{
+        margin: 10% 0 0 0;
+        width: 315px;
+        height: 265px;
+        margin-bottom: 0;
+     }
+     .add_image{
+        height: 170px;
+
+     }
+     #img{
+         width: 50px;
+     }
+     .img_load{
+         flex-direction: column;
+         justify-content: flex-start;
+     }
+     #url{
+         margin: 20px;
+         margin-bottom: 0;
+     }
+     #reset_img_preview{
+        align-self: center;
+        margin-bottom: 10px;
+     }
+     .save_button{
+        align-self: center;
+     }
+     .description_block{
+         width: 100%;
+         height: 80%;
+     }
+   .add_input{
+       height: 100px;
+       margin: 20px;
+       align-self: center;
+   }
+ }
