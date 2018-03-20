@@ -37,6 +37,40 @@ function mainListeners() {
     let addButton = document.getElementsByClassName('add_button')[0];
     let signupButton;
     let logoutButton = document.getElementsByClassName('logout_button')[0];
+    let filterButton = document.getElementsByClassName("filter_button")[0];
+
+    filterButton.addEventListener("click", function (e) {
+        let msg = document.getElementById("message");
+        if (msg) {
+            document.getElementsByTagName("main")[0].removeChild(msg);
+        }
+        let search = document.forms.search;
+        let nameFilter = search.elements.nameFilter.value || null;
+        let date = search.elements.dateFilter.value || null;
+        let dateFilter
+        let hashFilter = search.elements.hashFilter.value || null;
+        if (date) {
+            dateFilter = new Date(date);
+        }
+        else {
+            dateFilter = null;
+        }
+        moduledom.loadPhotoposts(0, module.array.length, {
+            author: nameFilter,
+            createdAt: dateFilter, hashTags: hashFilter
+        });
+        if (moduledom.currentPostAmount === 0) {
+            let message = document.createElement('div');
+            message.className = "title";
+            message.id = "message";
+            message.innerText = "There are no such photoposts.";
+            document.getElementsByTagName("main")[0].appendChild(message);
+        }
+        let showButton = document.getElementById('show');
+        showButton.innerHTML = "";
+        e.preventDefault();
+    });
+
 
     if (moduledom.user) {
         addButton.addEventListener("click", function () {
@@ -94,7 +128,7 @@ let addingListeners = function (someid) {
                 }
             }
         };
- 
+
 
         let reset = document.getElementById("reset_img_preview");
         reset.addEventListener("click", function () {
@@ -106,14 +140,11 @@ let addingListeners = function (someid) {
 
 
         save.addEventListener("click", savePh);
-        function savePh() {
+        function savePh(e) {
+            e.preventDefault();
             let description = form.elements.description.value;
-            let hashtags = form.elements.hashtags.value.split(',');
-
+            let hashtags = form.elements.hashtags.value.split(' ');
             let id = someid || String(module.array.length + 2);
-            if (someid) {
-                hashtags = "";
-            }
             let link = preview.src;
             if (link === "default_preview.jpg" || link === "file:///C:/Users/User/UPproj/task3/default_preview.jpg") {
                 link = "";
@@ -123,13 +154,13 @@ let addingListeners = function (someid) {
                 hashTags: hashtags, description: description,
                 likes: []
             };
-    
-            if (module.addPhotoPost(photopost)){ 
+
+            if (module.addPhotoPost(photopost)) {
                 reloadMain();
             }
             else if (module.editPhotoPost(id, photopost)) {
                 reloadMain();
-               
+
             }
             else {
                 alert("you suck");
@@ -150,9 +181,41 @@ function loadEditPost(someid) {
 }
 
 function loginListeners() {
+    let data = document.forms.data;
     let signupButton = document.getElementsByClassName('signup')[0];
-    signupButton.addEventListener("click", reloadMain);
 
+    signupButton.addEventListener("click", () => {
+        if (validate(data)) {
+            moduledom.user = data.elements.username.value;
+            reloadMain();
+        }
+    });
+    function validate(form) {
+        let isValidate = true;
+        resetError(form.elements.username);
+        if (!form.elements.username.value || form.elements.username.value.length < 5) {
+            showError(form.elements.username);
+            isValidate = false;
+        }
+
+        resetError(form.elements.password);
+        if (!form.elements.password.value || form.elements.password.value.length < 4) {
+            showError(form.elements.password);
+            isValidate = false;
+        }
+        return isValidate;
+    }
+
+    function showError(elem) {
+        elem.style.backgroundColor = "#fbe7e8"
+        elem.style.borderColor = "#bf0b0b";
+        elem.style.borderWidth = "1px";
+    }
+
+    function resetError(elem) {
+        elem.style.backgroundColor = "#F9F8F7";
+        elem.style.borderColor = "#C19D46";
+    }
 }
 function reloadMain() {
     moduledom.clearMain();

@@ -34,7 +34,9 @@
 
 .personal_data{
     width:auto;
+    height: 25px;
     margin: 5%;
+    padding: 2px;
     border-radius: 16px;
     border-color: #C19D46;
     border-width: 0.8px;
@@ -72,6 +74,14 @@
     .input_field{
         width: 120%;
     }
+    #done_icon{
+        color: #5B1A04;
+        font-size: 40px;
+    }
+     #done_icon:hover,#done_icon:active{
+         color: #8cc3c9;
+     }
+   
 }
 
 
@@ -203,10 +213,10 @@ div.fakefile {
 }
 .add_input{
     margin: 2% 0 2% 10%;
-    padding: 10px;;
+    padding: 20px;;
     width: 200px;
     height: 30%;
-    border: 1.5px solid #5B1A04;
+    border: 1.5px solid #C19D46;
     border-radius: 45px;
     background-color: #F9F8F7;
     align-self: flex-start;
@@ -214,6 +224,7 @@ div.fakefile {
     color: #5B1A04;
     resize: none; 
 }
+
 .save_button,.reset_button{
     border: none;
     background-color: rgba(0, 0, 0, 0);
@@ -236,7 +247,6 @@ div.fakefile {
      .photo{
         margin: 10% 0 0 0;
         width: 315px;
-        height: 265px;
         margin-bottom: 0;
      }
      .add_image{
@@ -253,6 +263,9 @@ div.fakefile {
      #url{
          margin: 20px;
          margin-bottom: 0;
+     }
+     #clear,#done{
+         font-size: 36px;
      }
      #reset_img_preview{
         align-self: center;

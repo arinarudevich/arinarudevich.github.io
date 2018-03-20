@@ -13,14 +13,14 @@ const addingPage = (function () {
                 <input type="file" multiple accept="image/*" name="img" id="img"/>                                
             </div>
             <input type="url" multiple accept="image/*" name="url" id ="url" placeholder=" enter url"/>
-            <button type="button" title="delete image" class="reset_button"  id="reset_img_preview"><i class="material-icons md-36">clear</i></button>
+            <button type="button" title="delete image" class="reset_button"  id="reset_img_preview"><i id="clear" class="material-icons md-36">clear</i></button>
         </div>
     </div>
     <div class="description_block">
         <textarea name="description" class="add_input" placeholder=" enter description"></textarea>   
         <textarea name="hashtags" class="add_input" placeholder=" enter hashtags"></textarea>
-        <button title="save photopost" class="save_button" name="save">
-        <i class="material-icons md-36">done</i>
+        <button type="submit" title="save photopost" class="save_button" name="save">
+        <i class="material-icons md-36" id="done">done</i>
         </button>
     </div>
 </form>

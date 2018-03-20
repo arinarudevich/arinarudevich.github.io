@@ -2,6 +2,7 @@
 const moduledom = (function () {
     let username = "me"
     let currPostAmount = 0;
+   
 
     return {
         currentPostAmount: currPostAmount,
@@ -132,27 +133,7 @@ const moduledom = (function () {
             document.getElementsByTagName('main')[0].appendChild(showButton);
 
         },
-        createButtons: function () {
-            let searchBlock = document.createElement('div');
-            searchBlock.className = "search_block";
-            document.getElementsByTagName('main')[0].appendChild(searchBlock);
-
-            let nameSearch = document.createElement('input');
-            nameSearch.className = "search";
-            nameSearch.placeholder = " Search by name..";
-            document.getElementsByClassName('search_block')[0].appendChild(nameSearch);
-
-            let dateSearch = document.createElement('input');
-            dateSearch.className = "search";
-            dateSearch.type = "date";
-            document.getElementsByClassName('search_block')[0].appendChild(dateSearch);
-
-            let hashSearch = document.createElement('input');
-            hashSearch.className = "search";
-            hashSearch.placeholder = " Search by hashtag..";
-            document.getElementsByClassName('search_block')[0].appendChild(hashSearch);
-
-
+        createAddButton: function () {
             let addButton = document.createElement('button');
             addButton.className = 'add_button';
             addButton.innerHTML = '&#10010 add photo post';
@@ -160,9 +141,42 @@ const moduledom = (function () {
 
 
         },
+        createFilter: function() {
+            let searchBlock = document.createElement('form');
+            searchBlock.className = "search_block";
+            searchBlock.name = "search";
+            document.getElementsByTagName('main')[0].appendChild(searchBlock);
+
+            let nameSearch = document.createElement('input');
+            nameSearch.className = "search";
+            nameSearch.placeholder = " Search by name..";
+            nameSearch.name = "nameFilter";
+            document.getElementsByClassName('search_block')[0].appendChild(nameSearch);
+
+            let dateSearch = document.createElement('input');
+            dateSearch.className = "search";
+            dateSearch.type = "date";
+            dateSearch.name = "dateFilter";
+            document.getElementsByClassName('search_block')[0].appendChild(dateSearch);
+
+            let hashSearch = document.createElement('input');
+            hashSearch.className = "search";
+            hashSearch.placeholder = " Search by hashtag..";
+            hashSearch.name = "hashFilter";
+            document.getElementsByClassName('search_block')[0].appendChild(hashSearch);
+
+            let filter = document.createElement('button');
+            filter.className = "filter_button";
+
+            filter.innerHTML = ' <i class="material-icons md-24 red1">done</i>';
+
+            document.getElementsByClassName('search_block')[0].appendChild(filter);
+
+        },
         dependOnUser: function (user) {
             if (typeof user === 'string' && user !== null) {
-                this.createButtons();
+                this.createFilter();
+                this.createAddButton();
                 this.createShowButton();
                 document.getElementsByClassName("logout_block")[0].innerHTML = "";
                 let username = document.createElement('p');
@@ -178,6 +192,7 @@ const moduledom = (function () {
             }
 
             else {
+                this.createFilter();
                 this.createShowButton();
                 document.getElementsByClassName("logout_block")[0].innerHTML = "";
                 let sign = document.createElement('div');
