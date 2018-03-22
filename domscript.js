@@ -280,5 +280,6 @@ const moduledom = (function () {
         }
     }
 })();
+LS.init();
 moduledom.dependOnUser(moduledom.user);
 moduledom.loadPhotoposts(0, 10);
