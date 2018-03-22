@@ -1,12 +1,10 @@
 
 let module = (function () {
-
     function compareDates(a, b) {
         return b.createdAt - a.createdAt;
     }
 
     return {
-        array: photoPosts,
         validatePhotoPost: function (photoPost) {
             if (photoPost.id === '' || typeof photoPost.id !== 'string')
                 return false;
@@ -23,38 +21,42 @@ let module = (function () {
             else return true;
         },
         addPhotoPost: function (photoPost) {
+            let photoPosts = LS.getPostsFromLS();
             if (module.validatePhotoPost(photoPost)) {
                 if (photoPosts.every(function (element) {
                     return element.id !== photoPost.id;
                 })) {
-                    photoPosts.push(photoPost);
-                    photoPosts.sort(compareDates);
+                    LS.pushPostInLS(photoPost);
                     return true;
                 }
                 else return false;
             }
             else return false;
         },
-
         getPhotoPost: function (someid) {
+            let photoPosts = LS.getPostsFromLS();
             return photoPosts.find(function (element) {
                 return element.id === someid;
             });
         },
 
         removePhotoPost: function (someid) {
+            let photoPosts = LS.getPostsFromLS();
+
             if (photoPosts.some(function (element) {
                 return element.id === someid;
             })) {
                 photoPosts.splice(photoPosts.findIndex(function (element) {
                     return element.id === someid;
                 }), 1);
+                LS.savePostsInLS(photoPosts);
                 return true;
             }
             else return false;
         },
 
         editPhotoPost: function (someid, photoPost) {
+            let photoPosts = LS.getPostsFromLS();
             if (photoPosts.some(function (element) {
                 return element.id === someid;
             })) {
@@ -85,6 +87,7 @@ let module = (function () {
                 }
                 if (this.validatePhotoPost(newPhPost)) {
                     photoPosts[index] = newPhPost;
+                    LS.savePostsInLS(photoPosts);
                     return true;
                 }
                 else return false;
@@ -94,13 +97,16 @@ let module = (function () {
         getPhotoPosts: function (skip, top, filterConfig) {
             skip = skip || 0;
             top = top || 10;
-            filterConfig = filterConfig || {};
+
+            let photoPosts = LS.getPostsFromLS();
 
             if (typeof skip === 'number' || typeof top === 'number' || typeof filterConfig === 'object') {
                 if (arguments.length < 3) {
                     return photoPosts.slice(skip, skip + top);
                 }
                 else {
+                    filterConfig = filterConfig || {};
+
                     let newPhPosts = photoPosts.slice();
 
                     if (filterConfig.hasOwnProperty('author') && filterConfig.author) {

@@ -1,8 +1,8 @@
 
 const moduledom = (function () {
-    let username = "me"
+    let username = null;
     let currPostAmount = 0;
-   
+
 
     return {
         currentPostAmount: currPostAmount,
@@ -47,7 +47,7 @@ const moduledom = (function () {
                 favorite.setAttribute('data-action', 'like');
 
                 this.toLike(post.id, favorite);
-                    photopost.childNodes[2].appendChild(favorite);
+                photopost.childNodes[2].appendChild(favorite);
 
                 let ph_info = document.createElement('div');
                 ph_info.className = 'ph_info';
@@ -76,7 +76,8 @@ const moduledom = (function () {
                 let editButton = document.createElement('button');
                 editButton.className = 'tool_button';
                 editButton.setAttribute('data-action', 'edit');
-                if (typeof moduledom.user === 'string' && moduledom.user !== null) {
+                if (typeof moduledom.user === 'string' && moduledom.user !== null
+                    && moduledom.user === post.author) {
                     editButton.innerHTML = '<i class="material-icons md-36 yellow1">edit</i>';
                 }
                 toolbar.childNodes[2].appendChild(editButton);
@@ -84,7 +85,8 @@ const moduledom = (function () {
                 let deleteButton = document.createElement('button');
                 deleteButton.className = 'tool_button';
                 deleteButton.setAttribute('data-action', 'delete');
-                if (typeof moduledom.user === 'string' && moduledom.user !== null) {
+                if (typeof moduledom.user === 'string' && moduledom.user !== null
+                    && moduledom.user === post.author) {
                     deleteButton.innerHTML = '<i class="material-icons md-36 yellow1">delete</i>';
                 }
                 toolbar.childNodes[2].appendChild(deleteButton);
@@ -95,19 +97,20 @@ const moduledom = (function () {
             }
         },
         toLike: function (someid, favorite) {
+            let photoPosts = LS.getPostsFromLS();
             if (typeof moduledom.user === 'string' && moduledom.user !== null) {
-                let index = module.array.findIndex(function (element) {
+                let index = photoPosts.findIndex(function (element) {
                     return element.id === someid;
                 });
-                if (module.array[index].likes.every(function (element) {
+                if (photoPosts[index].likes.every(function (element) {
                     return element !== moduledom.user;
                 })) {
-                    
-                    favorite.innerHTML = ' <i class="material-icons md-36 yellow1">favorite_border</i>';
+
+                    favorite.innerHTML = '<i class="material-icons md-36 yellow1">favorite_border</i>';
                 }
                 else {
-                   
-                    favorite.innerHTML = ' <i class="material-icons md-36 blue">favorite</i>'
+
+                    favorite.innerHTML = '<i class="material-icons md-36 blue">favorite</i>'
                 }
                 return true;
             }
@@ -138,10 +141,8 @@ const moduledom = (function () {
             addButton.className = 'add_button';
             addButton.innerHTML = '&#10010 add photo post';
             document.getElementsByTagName('main')[0].insertBefore(addButton, document.getElementById('show'));
-
-
         },
-        createFilter: function() {
+        createFilter: function () {
             let searchBlock = document.createElement('form');
             searchBlock.className = "search_block";
             searchBlock.name = "search";
@@ -165,12 +166,22 @@ const moduledom = (function () {
             hashSearch.name = "hashFilter";
             document.getElementsByClassName('search_block')[0].appendChild(hashSearch);
 
+            let filterBlock = document.createElement('div');
+            filterBlock.className = "filter_block";
+            document.getElementsByClassName('search_block')[0].appendChild(filterBlock);
+
             let filter = document.createElement('button');
             filter.className = "filter_button";
+            filter.title = "filter posts";
+            filter.innerHTML = '<i class="material-icons md-24 red1">search</i>';
+            document.getElementsByClassName('filter_block')[0].appendChild(filter);
 
-            filter.innerHTML = ' <i class="material-icons md-24 red1">done</i>';
+            let filterErase = document.createElement('button');
+            filterErase.className = "filter_button";
+            filterErase.title = "erase filter";
+            filterErase.innerHTML = '<i class="material-icons md-24 red1">clear</i>';
+            document.getElementsByClassName('filter_block')[0].appendChild(filterErase);
 
-            document.getElementsByClassName('search_block')[0].appendChild(filter);
 
         },
         dependOnUser: function (user) {
@@ -213,6 +224,7 @@ const moduledom = (function () {
         },
 
         editPhotopost: function (someid, photoPost) {
+            let photoPosts = LS.getPostsFromLS();
             if (module.editPhotoPost(someid, photoPost)) {
                 let index = photoPosts.findIndex(function (element) {
                     return element.id === someid;
@@ -232,6 +244,7 @@ const moduledom = (function () {
 
         loadPhotoposts: function (skip, top, filterConfig) {
             let filtered = module.getPhotoPosts(skip, top, filterConfig);
+            let photoPosts = LS.getPostsFromLS();
             if (filtered) {
                 if (arguments.length < 3) {
                     photoPosts.forEach(function (item) {
@@ -251,14 +264,14 @@ const moduledom = (function () {
                         moduledom.createPhotopost(item);
                     });
                 }
-                if (moduledom.currentPostAmount === module.array.length) {
+                if (moduledom.currentPostAmount === photoPosts.length) {
                     let showButton = document.getElementById('show');
                     showButton.innerHTML = "";
                 }
                 return true;
             }
             else return false;
-            
+
         },
         clearMain: function () {
             let main = document.getElementsByTagName("main")[0];

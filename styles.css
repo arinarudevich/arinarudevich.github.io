@@ -32,8 +32,25 @@ header{
     align-items: flex-start;
 
 }
-.empty{
+.home_button{
+    display: flex;
     width: 130px !important;  
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer; 
+    align-items: flex-start;
+    color: #5B1A04;
+}
+
+#home{
+    margin: 10px;
+    font-size: 40px;
+}
+.home_button:hover{
+    color: #FEC63D;
+}
+.home_button:active{
+    color: #FEC63D;
 }
 .logout_block{
     display: flex;
@@ -123,6 +140,11 @@ main{
     color: #5B1A04;
     background-color: #F9F8F7;
 }
+.filter_block{
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
 .filter_button{
     padding: 0;
     border: none;
@@ -130,14 +152,12 @@ main{
     color: #5B1A04;
     cursor: pointer;
 }
-.filter_button:hover{
-     color: #FEC63D;
-}
+
 
 ::-webkit-input-placeholder { 
      color: #5B1A04;
   }
-  @media(max-width: 700px){
+  @media(max-width: 800px){
     .search{
         width: 100px;
         margin: 16px 5px 5px 16px;
@@ -264,7 +284,8 @@ main{
 .material-icons.red1{
     color: #5B1A04;
 }
-.material-icons.md-36.yellow1:hover{
+
+.material-icons.md-36.yellow1:hover,.material-icons.red1:hover{
     color: #8cc3c9;
 }
 .material-icons.md-36.yellow1:active{
@@ -330,9 +351,14 @@ footer{
         height: 235px;
         margin: 35px;
     }
-    .material-icons.md-36 { font-size: 20px; }
+    .material-icons.md-36 { 
+        font-size: 20px; 
+    }
     .tool_button{
         margin: 0;
+    }
+    #home{
+        font-size: 20px;
     }
     .description{
         font-size: 0.8em;

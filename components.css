@@ -36,7 +36,7 @@
     width:auto;
     height: 25px;
     margin: 5%;
-    padding: 2px;
+    padding: 5px;
     border-radius: 16px;
     border-color: #C19D46;
     border-width: 0.8px;
@@ -132,10 +132,19 @@
     margin: 10px;
 
 }
+.title2{
+    background-color: #FDF9ED;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1em;
+    color: #9B7260;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    margin-bottom: 100px;
+}
 .add{
     display: flex;
     justify-content: space-around;
-    margin-bottom: 100px;
 }
 .photo{
     display: flex;
@@ -188,6 +197,9 @@ div.fakefile {
 .fakeinput{
     margin: 0;
 }
+#static_search:hover,#static_search:active{
+    color: #5B1A04;
+}
 #add_date{
     font-family: 'Advent Pro', cursive;
     font-size: 1em;
@@ -231,6 +243,7 @@ div.fakefile {
     color: #5B1A04;
     cursor: pointer;
     align-self: flex-start;
+    margin-right: 10px;
 }
 .save_button:hover,.reset_button:hover{
     color: #FEC63D;
@@ -264,20 +277,13 @@ div.fakefile {
          margin: 20px;
          margin-bottom: 0;
      }
-     #clear,#done{
-         font-size: 36px;
-     }
-     #reset_img_preview{
+    .save_button{
         align-self: center;
-        margin-bottom: 10px;
-     }
-     .save_button{
-        align-self: center;
-     }
-     .description_block{
+    }
+    .description_block{
          width: 100%;
          height: 80%;
-     }
+    }
    .add_input{
        height: 100px;
        margin: 20px;

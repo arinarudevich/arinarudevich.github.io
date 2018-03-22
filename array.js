@@ -1,4 +1,4 @@
-let photoposts = [
+let myarray = [
     {
         id: "1",
         description: "Dear Sam, Where?",
@@ -91,7 +91,7 @@ let photoposts = [
         likes: ["arina", "someguy"]
     },
     {
-        id: "12",
+        id: "0",
         description: "wedding",
         createdAt: new Date("2018-02-13T23:00:00"),
         author: "arinarudevich",

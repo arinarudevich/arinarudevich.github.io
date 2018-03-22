@@ -11,7 +11,7 @@ const loginPage = (function () {
         <form class="input_field" name="data">
             <input  name="username" class="personal_data" type="text" placeholder=" enter username"/>
             <input type="password" name="password" minlength="8" class="personal_data" type="text" placeholder=" enter password"/>
-            <button type="button" class="signup"> <i id="done_icon" class="material-icons  md-36 yellow1">done</i></button>
+            <button type="submit" class="signup"> <i id="done_icon" class="material-icons  md-36 yellow1">done</i></button>
         </form>
     </div>
 </div>

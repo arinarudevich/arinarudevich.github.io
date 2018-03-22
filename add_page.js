@@ -7,7 +7,7 @@ const addingPage = (function () {
         <div class="img_load">
             <div class="fileinputs">
                 <div class="fakefile">
-                    <i class="material-icons red1">search</i>
+                    <i id="static_search" class="material-icons red1">search</i>
                     <input class="fakeinput" name="fake" placeholder=" choose image" />                
                 </div>
                 <input type="file" multiple accept="image/*" name="img" id="img"/>                                
@@ -24,5 +24,7 @@ const addingPage = (function () {
         </button>
     </div>
 </form>
+<div class="title2"> Photo and discription are obligatory fields! </div>
+
 ` 
 })();
