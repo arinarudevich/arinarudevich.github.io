@@ -157,6 +157,7 @@ const moduledom = (function () {
             let dateSearch = document.createElement('input');
             dateSearch.className = "search";
             dateSearch.type = "date";
+            dateSearch.placeholder = "DD/MM/YY";
             dateSearch.name = "dateFilter";
             document.getElementsByClassName('search_block')[0].appendChild(dateSearch);
 
@@ -184,11 +185,37 @@ const moduledom = (function () {
 
 
         },
+        createDeleteBox: function () {
+            let box = document.createElement('div');
+            box.className = "delete_box";
+            box.innerText = 'Sure you want to delete this photo post?';
+            document.getElementsByTagName('main')[0].appendChild(box);
+
+            let confirm = document.createElement('div');
+            confirm.className = "confirm";
+            document.getElementsByClassName('delete_box')[0].appendChild(confirm);
+
+            let yesButton = document.createElement('button');
+            yesButton.className = "confirm_button";
+            yesButton.id = "yes";
+            yesButton.innerHTML = '<i class="material-icons md-36 red1">done</i>';
+            document.getElementsByClassName('confirm')[0].appendChild(yesButton);
+
+            let noButton = document.createElement('button');
+            noButton.className = "confirm_button";
+            noButton.id = "no";
+            noButton.innerHTML = '<i class="material-icons md-36 red1">clear</i>';
+            document.getElementsByClassName('confirm')[0].appendChild(noButton);
+
+
+
+        },
         dependOnUser: function (user) {
             if (typeof user === 'string' && user !== null) {
                 this.createFilter();
                 this.createAddButton();
                 this.createShowButton();
+                this.createDeleteBox();
                 document.getElementsByClassName("logout_block")[0].innerHTML = "";
                 let username = document.createElement('p');
                 username.className = 'username';
@@ -203,6 +230,7 @@ const moduledom = (function () {
             }
 
             else {
+                this.createDeleteBox();
                 this.createFilter();
                 this.createShowButton();
                 document.getElementsByClassName("logout_block")[0].innerHTML = "";

@@ -49,9 +49,7 @@ header{
 .home_button:hover{
     color: #FEC63D;
 }
-.home_button:active{
-    color: #FEC63D;
-}
+
 .logout_block{
     display: flex;
     width: 130px;
@@ -125,6 +123,22 @@ main{
     min-height: 100%;
     padding-bottom: 128px;
 }
+.delete_box{
+    display: none;
+    position: fixed;
+    align-self: center;
+    top: 40%;
+    width: 200px;
+    padding: 50px;
+    background-color: #FDF9ED;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px #000;
+    font-family: 'Advent Pro', cursive;
+    font-size: 1.2em;
+    color: #9B7260;
+    text-align: center;
+    
+}
 .search_block{
     display: flex;
 }
@@ -145,7 +159,7 @@ main{
     flex-direction: column;
     margin: 8px;
 }
-.filter_button{
+.filter_button,.confirm_button{
     padding: 0;
     border: none;
     background-color: rgba(0, 0, 0, 0);

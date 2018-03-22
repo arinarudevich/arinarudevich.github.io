@@ -64,10 +64,19 @@ function mainListeners() {
             moduledom.toLike(someid, event.target.parentNode);
         };
         this.delete = () => {
-            let del = confirm("Are you sure you want to delete photopost?");
-            if (del) {
-                moduledom.removePhotopost(event.path[4].id);
-            }
+            let id = event.path[4].id;
+            let box = document.getElementsByClassName("delete_box")[0];
+            box.style.display = 'block';
+            let yes = document.getElementById('yes');
+            let no = document.getElementById('no');
+            yes.addEventListener("click", () => {
+                box.style.display = 'none';
+                moduledom.removePhotopost(id);
+
+            });
+            no.addEventListener("click", () => {
+                box.style.display = 'none';
+            });
         };
         this.edit = () => {
             goToPage(addingPage, addingPageListeners(event.path[4].id));
