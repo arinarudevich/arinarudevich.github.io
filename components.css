@@ -159,7 +159,6 @@
     justify-content: flex-start;
     align-items: center;
     width: 450px;
-    height: 280px;
     margin: 5%;
     margin-right: 0;
     border: 2px dashed #5B1A04;
@@ -169,7 +168,6 @@
 .add_image{
     border-radius: 50px;
     width: 98%;
-    height: 230px;
     margin: 5px;
 }
 #img{
@@ -251,6 +249,7 @@ div.fakefile {
     cursor: pointer;
     align-self: flex-start;
     margin-right: 10px;
+    margin-left: 10px;
 }
 .save_button:hover,.reset_button:hover{
     color: #FEC63D;
@@ -268,10 +267,6 @@ div.fakefile {
         margin: 10% 0 0 0;
         width: 315px;
         margin-bottom: 0;
-     }
-     .add_image{
-        height: 170px;
-
      }
      #img{
          width: 50px;
