@@ -319,15 +319,3 @@ function goToPage(page, listeners) {
 
 
 function trim(str) { return str.replace(/^\s+|\s+$/g, ""); }
-
-function includes(string, search, start) {
-    if (typeof start !== 'number') {
-        start = 0;
-    }
-
-    if (start + search.length > string.length) {
-        return false;
-    } else {
-        return string.indexOf(search, start) === -1;
-    }
-}
