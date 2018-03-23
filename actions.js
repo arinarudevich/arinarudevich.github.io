@@ -1,14 +1,8 @@
+
 mainListeners();
 
 function mainListeners() {
-    let postList = document.getElementsByClassName("photopost");
-    let phposts = [];
-    for (let i = 0; i < postList.length; ++i) {
-        phposts[i] = postList[i];
-    }
-    phposts.forEach(element => {
-        element.addEventListener("click", tool);
-    });
+    addEventListener("click", tool);
 
     let homeButton = document.getElementById("home");
     let showButton = document.getElementById('show');
@@ -55,40 +49,41 @@ function mainListeners() {
     showButton.addEventListener("click", showMore);
 
     function tool() {
-        this.like = () => {
-            let someid = event.path[3].id;
-            let index = JSON.parse(localStorage.getItem("posts")).findIndex(function (element) {
-                return element.id === someid;
-            });
-            moduledom.editPhotopost(someid, { likes: moduledom.user });
-            moduledom.toLike(someid, event.target.parentNode);
-        };
-        this.delete = () => {
-            let id = event.path[4].id;
-            let box = document.getElementsByClassName("delete_box")[0];
-            box.style.display = 'block';
-            let yes = document.getElementById('yes');
-            let no = document.getElementById('no');
-            yes.addEventListener("click", () => {
-                box.style.display = 'none';
-                moduledom.removePhotopost(id);
+        let elem = event.target;
+        if (elem && elem.closest(".photopost")) {
+            let someid = elem.closest(".photopost").id;
 
-            });
-            no.addEventListener("click", () => {
-                box.style.display = 'none';
-            });
-        };
-        this.edit = () => {
-            goToPage(addingPage, addingPageListeners(event.path[4].id));
-            loadEditPost(event.path[4].id);
-        };
+            this.like = () => {
+                let index = JSON.parse(localStorage.getItem("posts")).findIndex(function (element) {
+                    return element.id === someid;
+                });
+                moduledom.editPhotopost(someid, { likes: moduledom.user });
+                moduledom.toLike(someid, event.target.parentNode);
+            };
+            this.delete = () => {
+                let popup = document.getElementsByClassName("popup")[0];
+                popup.style.display = 'flex';
+                let yes = document.getElementById('yes');
+                let no = document.getElementById('no');
+                yes.addEventListener("click", () => {
+                    popup.style.display = 'none';
+                    moduledom.removePhotopost(someid);
+                });
+                no.addEventListener("click", () => {
+                    popup.style.display = 'none';
+                });
+            };
+            this.edit = () => {
+                goToPage(addingPage, addingPageListeners(someid));
+                loadEditPost(someid);
+            };
 
-        let elem = event.target.parentNode;
-
-        if (elem && elem.tagName == 'BUTTON' && elem.hasAttribute('data-action')) {
-            let action = elem.getAttribute('data-action');
-            if (action) {
-                this[action]();
+            elem = elem.parentNode;
+            if (elem && elem.tagName == 'BUTTON' && elem.hasAttribute('data-action') && !elem.disabled) {
+                let action = elem.getAttribute('data-action');
+                if (action) {
+                    this[action]();
+                }
             }
         }
     }
@@ -99,6 +94,7 @@ function mainListeners() {
                 goToPage(addingPage, addingPageListeners());
             });
             logoutButton.addEventListener("click", () => {
+                localStorage.setItem("user", null);
                 moduledom.user = null;
                 reloadMain();
             })
@@ -129,15 +125,25 @@ let addingPageListeners = (someid) => {
         let url = form.elements.url;
         let img = form.elements.img;
         let descr = form.elements.description;
+        let tags = form.elements.hashtags;
 
         descr.addEventListener("change", () => {
             resetError(descr);
         });
+        tags.addEventListener("change", () => {
+            resetError(form.elements.hashtags);
+        });
 
         let preview = document.getElementById('img_preview');
         img.addEventListener("change", previewImg);
-        
+        document.getElementById("img_preview").addEventListener("error", () => {
+            preview.src = 'default_preview.jpg';
+        })
+
         url.addEventListener("change", previewImg);
+        save.addEventListener("click", savePh);
+
+
         function previewImg() {
             if (url.value) {
                 preview.src = url.value;
@@ -156,7 +162,7 @@ let addingPageListeners = (someid) => {
                         console.log('oops, that is not an image');
                     }
                 } else {
-                    console.log('you messed up');
+                    console.log('no files');
                 }
             }
             resetError(url);
@@ -170,17 +176,17 @@ let addingPageListeners = (someid) => {
             url.value = '';
             form.elements.fake.value = '';
             preview.src = 'default_preview.jpg';
+            resetError(form.elements.url);
+            resetError(form.elements.fake);
         });
 
 
-
-        save.addEventListener("click", savePh);
         function savePh(e) {
-            let description = form.elements.description.value;
-            let hashtags = form.elements.hashtags.value.split(' ');
-            let id = someid || String(JSON.parse(localStorage.getItem("posts")).length + 1);
+            let description = trim(form.elements.description.value);
+            let hashtags = trim(form.elements.hashtags.value).split(' ');
+            let id = someid || String(LS.getID());
             let link = preview.src;
-            if (link === "default_preview.jpg" || link === "file:///C:/Users/User/UPproj/task3/default_preview.jpg") {
+            if (link === "default_preview.jpg" || link === "file:///C:/Users/User/UPproj/task3/default_preview.jpg" || !imageExist(link)) {
                 link = "";
             }
             let photopost = {
@@ -188,30 +194,46 @@ let addingPageListeners = (someid) => {
                 hashTags: hashtags, description: description,
                 likes: []
             };
-
-            if (module.addPhotoPost(photopost)) {
-                reloadMain();
+            if (validateAddingForm()) {
+                if (someid) {
+                    module.editPhotoPost(id, photopost);
+                    reloadMain();
+                } else {
+                    module.addPhotoPost(photopost);
+                    reloadMain();
+                }
             }
-            else if (module.editPhotoPost(id, photopost)) {
-                reloadMain();
-            }
-            else {
+            function validateAddingForm() {
+                flag = true;
                 if (!description) {
                     showError(form.elements.description);
-                } else {
-                    resetError(form.elements.description);
-                }
-                if (!link) {
+                    flag = false;
+                } 
+                if (!link || link === "") {
                     showError(form.elements.url);
                     showError(form.elements.fake);
+                    flag = false;
                 } else {
                     resetError(form.elements.url);
                     resetError(form.elements.fake);
                 }
-
+                if (hashtags.some((el) => {
+                    return el.length > 20;
+                })) {
+                    showError(form.elements.hashtags);
+                    flag = false;
+                } 
+                return flag;
             }
             e.preventDefault();
         }
+        function imageExist(url) {
+            var img = new Image();
+            img.src = url;
+            return img.height != 0;
+        }
+
+
     }
 }
 
@@ -228,27 +250,39 @@ function loadEditPost(someid) {
 }
 
 function loginListeners() {
+    let header = document.getElementsByTagName("header")[0];
+    header.style.display = "none";
+    addEventListener("scroll", () => {
+        header.style.display = "flex";
+    })
     let data = document.forms.data;
     let signupButton = document.getElementsByClassName('signup')[0];
 
     signupButton.addEventListener("click", (e) => {
         if (validate(data)) {
-            moduledom.user = data.elements.username.value;
+            let user = JSON.stringify(data.elements.username.value);
+            localStorage.setItem("user", user);
+            moduledom.user = trim(data.elements.username.value);
+            header.style.display = "flex";
             reloadMain();
         }
         e.preventDefault();
     });
     function validate(form) {
         let isValidate = true;
+        let msg = document.getElementsByClassName("error_msg")[0];
         resetError(form.elements.username);
-        if (!form.elements.username.value || form.elements.username.value.length < 3) {
+        resetError(msg);
+        if (!form.elements.username.value || trim(form.elements.username.value).length < 3) {
             showError(form.elements.username);
+            msg.innerText = msg.innerText + "Username must contain more than 3 characters!\n";
             isValidate = false;
         }
 
         resetError(form.elements.password);
         if (!form.elements.password.value || form.elements.password.value.length < 4) {
             showError(form.elements.password);
+            msg.innerText = msg.innerText + "Password must contain at least 4 symbols!\n ";
             isValidate = false;
         }
         return isValidate;
@@ -261,8 +295,12 @@ function showError(elem) {
 }
 
 function resetError(elem) {
-    elem.style.backgroundColor = "#F9F8F7";
-    elem.style.borderColor = "#C19D46";
+    if (elem.className === "error_msg") {
+        elem.innerText = "";
+    } else {
+        elem.style.backgroundColor = "#F9F8F7";
+        elem.style.borderColor = "#C19D46";
+    }
 }
 function reloadMain() {
     moduledom.clearMain();
@@ -278,3 +316,6 @@ function goToPage(page, listeners) {
         listeners();
     }
 }
+
+
+function trim(str) { return str.replace(/^\s+|\s+$/g, ""); }

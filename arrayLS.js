@@ -7,7 +7,14 @@ const LS = (function () {
             myarray.sort(compareDates);
             let poststring = JSON.stringify(myarray);
             localStorage.setItem("posts", poststring);
-
+            let amountstring = JSON.stringify(myarray.length);
+            localStorage.setItem("id", amountstring);
+        },
+        getID: function () {
+            let newID = JSON.parse(localStorage.getItem("id")) + 1;
+            let idstring = JSON.stringify(newID);
+            localStorage.setItem("id", idstring);
+            return JSON.parse(localStorage.getItem("id"));
         },
         pushPostInLS: function (photoPost) {
             let posts = JSON.parse(localStorage.getItem("posts"));
@@ -18,14 +25,15 @@ const LS = (function () {
             posts.sort(compareDates);
 
             let poststring = JSON.stringify(posts);
-            debugger;
             localStorage.setItem("posts", poststring);
         },
         getPostsFromLS: function () {
             let posts = JSON.parse(localStorage.getItem("posts"));
-            posts.forEach(element => {
-                element.createdAt = new Date(element.createdAt);
-            });
+            if (posts) {
+                posts.forEach(element => {
+                    element.createdAt = new Date(element.createdAt);
+                });
+            }    
             return posts;
         }, 
         savePostsInLS: function(posts) {

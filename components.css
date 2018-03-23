@@ -54,6 +54,13 @@
     align-self: flex-end;
 }
 
+.error_msg{
+    background-color: transparent;
+    font-family: 'Advent Pro', cursive;
+    font-size: 0.8em;
+    color: #bf0b0b;
+    text-align: center;
+}
 @media(max-width: 600px){
     #login_img{
         margin: 0;

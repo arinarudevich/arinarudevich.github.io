@@ -1,8 +1,8 @@
 
 const moduledom = (function () {
-    let username = null;
-    let currPostAmount = 0;
+    let username = JSON.parse(localStorage.getItem("user")) || null;
 
+    let currPostAmount = 0;
 
     return {
         currentPostAmount: currPostAmount,
@@ -79,6 +79,8 @@ const moduledom = (function () {
                 if (typeof moduledom.user === 'string' && moduledom.user !== null
                     && moduledom.user === post.author) {
                     editButton.innerHTML = '<i class="material-icons md-36 yellow1">edit</i>';
+                } else {
+                    editButton.setAttribute("disable", true);
                 }
                 toolbar.childNodes[2].appendChild(editButton);
 
@@ -88,6 +90,8 @@ const moduledom = (function () {
                 if (typeof moduledom.user === 'string' && moduledom.user !== null
                     && moduledom.user === post.author) {
                     deleteButton.innerHTML = '<i class="material-icons md-36 yellow1">delete</i>';
+                } else {
+                    deleteButton.setAttribute("disable", true);
                 }
                 toolbar.childNodes[2].appendChild(deleteButton);
                 this.currentPostAmount++;
@@ -98,23 +102,28 @@ const moduledom = (function () {
         },
         toLike: function (someid, favorite) {
             let photoPosts = LS.getPostsFromLS();
+            let index = photoPosts.findIndex(function (element) {
+                return element.id === someid;
+            });
             if (typeof moduledom.user === 'string' && moduledom.user !== null) {
-                let index = photoPosts.findIndex(function (element) {
-                    return element.id === someid;
-                });
                 if (photoPosts[index].likes.every(function (element) {
                     return element !== moduledom.user;
                 })) {
-
                     favorite.innerHTML = '<i class="material-icons md-36 yellow1">favorite_border</i>';
+                    favorite.title = photoPosts[index].likes;
                 }
                 else {
+                    favorite.innerHTML = '<i class="material-icons md-36 blue">favorite</i>';
+                    favorite.title = photoPosts[index].likes;
 
-                    favorite.innerHTML = '<i class="material-icons md-36 blue">favorite</i>'
                 }
                 return true;
+
+            } else {
+                favorite.innerHTML = '<i class="material-icons md-36 yellow1">favorite_border</i>';
+                favorite.setAttribute("disabled", true);
+                favorite.title = photoPosts[index].likes;
             }
-            else return false;
         },
         deletePhotopost: function (someid) {
             if (typeof someid === 'string') {
@@ -186,10 +195,14 @@ const moduledom = (function () {
 
         },
         createDeleteBox: function () {
+            let popup = document.createElement('div');
+            popup.className = "popup";
+            document.getElementsByTagName('main')[0].appendChild(popup);
+
             let box = document.createElement('div');
             box.className = "delete_box";
             box.innerText = 'Sure you want to delete this photo post?';
-            document.getElementsByTagName('main')[0].appendChild(box);
+            document.getElementsByClassName("popup")[0].appendChild(box);
 
             let confirm = document.createElement('div');
             confirm.className = "confirm";
@@ -308,6 +321,5 @@ const moduledom = (function () {
         }
     }
 })();
-LS.init();
 moduledom.dependOnUser(moduledom.user);
 moduledom.loadPhotoposts(0, 10);

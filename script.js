@@ -3,7 +3,6 @@ let module = (function () {
     function compareDates(a, b) {
         return b.createdAt - a.createdAt;
     }
-
     return {
         validatePhotoPost: function (photoPost) {
             if (photoPost.id === '' || typeof photoPost.id !== 'string')
@@ -152,13 +151,3 @@ let module = (function () {
         }
     }
 }());
-    //object for adding from console
-/*{
-        id: '8',
-        description: 'love his hat',
-        createdAt: new Date('2018-02-13T23:00:00'),
-        author: 'arinarudevich',
-        photoLink: 'http://cmzone.vzbqbxhynotw9ion96xv.netdna-cdn.com/wp-content/uploads/2015/10/duckbootsmoonrisekingdom1.jpg',
-        hashTags: ['hashtag2'],
-        likes: ['arina', 'someguy']
-    },*/
