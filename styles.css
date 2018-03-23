@@ -235,8 +235,8 @@ main{
     justify-content: flex-start;
     align-items: center;
     width: 500px;
-    height: 370px;
-    border: 2px dashed  #5B1A04;
+    height: auto;
+    border: 2px dashed #5B1A04;
     border-radius: 45px;
     margin: 45px;
     background-color: #F9F8F7;
@@ -250,8 +250,8 @@ main{
 }
 .image{
     flex: 1 0 auto;
-    height: 70%;
-    width: 96%; 
+    width: auto;
+    max-width: 96%;
     border-radius: 30px;
 }
 .toolbar{
@@ -379,7 +379,6 @@ footer{
 @media(max-width: 600px){
     .photopost{
         width: 315px;
-        height: 235px;
         margin: 35px;
     }
     .material-icons.md-36 { 
@@ -420,7 +419,6 @@ footer{
     }
  .photopost{
         width: 315px;
-        height: 220.5px;
         margin: 35px 0 35px 0;
     }
 .signup_button,.username{
