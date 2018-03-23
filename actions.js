@@ -186,7 +186,7 @@ let addingPageListeners = (someid) => {
             let hashtags = trim(form.elements.hashtags.value).split(' ');
             let id = someid || String(LS.getID());
             let link = preview.src;
-            if (link === "default_preview.jpg" || link === "file:///C:/Users/User/UPproj/task3/default_preview.jpg" || !imageExist(link)) {
+            if (!imageExist(link) || link.indexOf('default_preview.jpg') !== -1) {
                 link = "";
             }
             let photopost = {
@@ -230,7 +230,7 @@ let addingPageListeners = (someid) => {
         function imageExist(url) {
             var img = new Image();
             img.src = url;
-            return img.height != 0;
+            return img.height !== 0;
         }
 
 
@@ -319,3 +319,15 @@ function goToPage(page, listeners) {
 
 
 function trim(str) { return str.replace(/^\s+|\s+$/g, ""); }
+
+function includes(string, search, start) {
+    if (typeof start !== 'number') {
+        start = 0;
+    }
+
+    if (start + search.length > string.length) {
+        return false;
+    } else {
+        return string.indexOf(search, start) === -1;
+    }
+}
