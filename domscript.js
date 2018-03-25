@@ -238,6 +238,7 @@ const moduledom = (function () {
                 let logoutButton = document.createElement('button');
                 logoutButton.className = 'logout_button';
                 logoutButton.innerHTML = '<i id="logout_icon" class="material-icons  md-36 red1">person_outline</i>';
+                logoutButton.title = "log out";
                 document.getElementsByClassName('logout_block')[0].appendChild(logoutButton);
                 return true;
             }
@@ -249,7 +250,7 @@ const moduledom = (function () {
                 document.getElementsByClassName("logout_block")[0].innerHTML = "";
                 let sign = document.createElement('div');
                 sign.className = 'sign';
-                sign.innerHTML = '<button class="signup_button">sign up</button>';
+                sign.innerHTML = '<button class="signup_button">sign in</button>';
                 document.getElementsByClassName('logout_block')[0].appendChild(sign);
                 return false;
             }

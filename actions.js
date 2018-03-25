@@ -160,9 +160,11 @@ let addingPageListeners = (someid) => {
                         reader.readAsDataURL(input.files[0]);
                     } else {
                         console.log('oops, that is not an image');
+                        showError(form.elements.fake);
                     }
                 } else {
                     console.log('no files');
+                    showError(form.elements.fake); 
                 }
             }
             resetError(url);

@@ -3,12 +3,9 @@ const LS = (function () {
         return b.createdAt - a.createdAt;
     }
     return {
-        init: function() {
-            myarray.sort(compareDates);
-            let poststring = JSON.stringify(myarray);
-            localStorage.setItem("posts", poststring);
-            let amountstring = JSON.stringify(myarray.length);
-            localStorage.setItem("id", amountstring);
+        init: function () {
+            localStorage.setItem("posts", arrayJS);
+            localStorage.setItem("id", "11");
         },
         getID: function () {
             let newID = JSON.parse(localStorage.getItem("id")) + 1;
@@ -33,12 +30,12 @@ const LS = (function () {
                 posts.forEach(element => {
                     element.createdAt = new Date(element.createdAt);
                 });
-            }    
+            }
             return posts;
-        }, 
-        savePostsInLS: function(posts) {
+        },
+        savePostsInLS: function (posts) {
             let poststring = JSON.stringify(posts);
             localStorage.setItem("posts", poststring);
         }
-    }    
+    }
 })();
